@@ -1,5 +1,4 @@
-# AuthSystemAPI
-FastAPI authentication system with JWT authentication, MySQL database integration, and secure password hashing.
+
 # AuthSystemAPI
 
 A secure authentication system built using FastAPI and MySQL. The project provides user registration, login, password hashing, JWT-based authentication, and protected routes.
