@@ -9,7 +9,6 @@ from fastapi import Response
 from app.schemas.auth import LoginRequest
 
 
-
 router = APIRouter(
     prefix="/auth",
     tags=["Authentication"]
