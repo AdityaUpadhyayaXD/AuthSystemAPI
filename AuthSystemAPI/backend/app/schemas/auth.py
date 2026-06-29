@@ -16,3 +16,8 @@ class RegisterRequest(BaseModel):
         min_length=8,
         max_length=100
     )
+class LoginRequest(BaseModel):
+
+    username: str
+
+    password: str
