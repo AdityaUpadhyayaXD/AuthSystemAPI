@@ -1,3 +1,5 @@
+from app import database
+from app import database
 from datetime import datetime, timedelta, UTC
 
 from sqlalchemy.orm import Session
@@ -30,3 +32,34 @@ class TokenService:
         db.commit()
 
         return token
+    
+
+    @staticmethod
+    def get_valid_refresh_token(
+        db: Session,
+        token: str
+    ):
+
+        return db.query(RefreshToken).filter(
+            RefreshToken.token == token,
+            RefreshToken.revoked == False
+        ).first()
+    
+    @staticmethod
+    def revoke(db: Session, token: str):
+
+        refresh = db.query(RefreshToken).filter(
+            RefreshToken.token == token
+        ).first()
+    
+
+    @staticmethod
+    def revoke(db: Session, token: str):
+
+        refresh = db.query(RefreshToken).filter(
+            RefreshToken.token == token
+        ).first()
+
+        if refresh:
+            refresh.revoked = True
+            db.commit()
