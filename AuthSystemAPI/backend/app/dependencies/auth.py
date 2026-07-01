@@ -1,19 +1,17 @@
 from fastapi import Cookie
 from fastapi import Depends
 from fastapi import HTTPException
-
 from sqlalchemy.orm import Session
 
 from app.database import get_db
-from app.core.jwt import verify_token
 from app.models.user import User
+from app.core.jwt import verify_token
 
 
 def get_current_user(
     access_token: str | None = Cookie(default=None),
-    db: Session = Depends(get_db),
+    db: Session = Depends(get_db)
 ):
-
     if access_token is None:
         raise HTTPException(
             status_code=401,
@@ -25,7 +23,7 @@ def get_current_user(
     if payload is None:
         raise HTTPException(
             status_code=401,
-            detail="Invalid token"
+            detail="Invalid or expired token"
         )
 
     if payload.get("type") != "access":
